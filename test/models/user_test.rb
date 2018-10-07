@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
+    @user = User.new(name: "Example User", email: "user@example.com", password: "foobarpass", password_confirmation: "foobarpass")
   end
 
   #ユーザオブジェクトの有効性確認
@@ -64,13 +64,13 @@ class UserTest < ActiveSupport::TestCase
 
   #password, password_confirmation存在確認
   test "password should be present (nonblank)" do
-    @user.password = @user.password_confirmation = " " * 6
+    @user.password = @user.password_confirmation = " " * 8
     assert_not @user.valid?
   end
 
   #password, password_confirmation最小文字数確認
   test "password should have a minimum length" do
-    @user.password = @user.password_confirmation = " " * 5
+    @user.password = @user.password_confirmation = " " * 7
     assert_not @user.valid?
   end
 end
