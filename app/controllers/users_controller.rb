@@ -41,6 +41,6 @@ class UsersController < ApplicationController
   end
 
   def vocabularies_search_params
-    params.require(:q).permit(:word_cont)
+    params.require(:q).permit(:word_or_similarity_cont)
   end
 end

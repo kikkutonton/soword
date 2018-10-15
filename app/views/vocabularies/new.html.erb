@@ -1,24 +1,25 @@
-<% provide(:title, 'New word') %>
-<h1>New word</h1>
+<% provide(:title, '単語登録') %>
+<h1>単語登録</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@vocabulary, url: create_path) do |f| %>
     <%= render 'vocabularies/error_messages' %>
 
-      <%= f.label :word %>
+      <%= f.label '単語' %>
       <%= f.text_field :word, class: 'form_control' %>
 
-      <%= f.label :meaning %>
+      <%= f.label '意味' %>
       <%= f.text_field :meaning, class: 'form_control' %>
 
-      <%= f.label :similarity %>
+      <%= f.label '類似' %>
       <%= f.text_field :similarity, class: 'form_control' %>
 
-      <%= f.label :example %>
+      <%= f.label '例文' %>
       <%= f.text_field :example, class: 'form_control' %>
 
-      <%= f.submit "Create new word", class: "btn btn-primary" %>
+      <%= f.submit "単語登録", class: "btn btn-primary" %>
     <% end %>
+    <%= link_to "My単語帳へ戻る", current_user %>
   </div>
 </div>

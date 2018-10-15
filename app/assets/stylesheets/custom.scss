@@ -1,6 +1,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+
 /* universal */
 
 body {
@@ -18,10 +29,9 @@ textarea {
 .center {
   text-align: center;
   h1 {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
   }
 }
-
 
 /* typography */
 
@@ -42,7 +52,15 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #777;
+  color: #333;
+}
+
+h4 {
+  color: #333;
+}
+
+h5 {
+  color: #333;
 }
 
 p {
@@ -56,28 +74,19 @@ p {
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
+  font-size: 2.3em;
+  color: #12e22d;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
+  padding-top: 15px;
   font-weight: bold;
   &:hover {
-  color: #fff;
-  text-decoration: none;
+    color: #12e22d;
+    text-decoration: none;
+    background-color:#fff;
   }
 }
 
-
-/* mixins, variables, etc. */
-
-$gray-medium-light: #eaeaea;
-
-@mixin box_sizing {
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
-}
 
 /* miscellaneous */
 
@@ -202,4 +211,43 @@ span.picture {
   input {
     border: 0;
   }
+}
+
+
+/* button */
+
+.btn-success {
+    color: #fff;
+    background-color: #12e22d;
+    border-color: #12e22d;
+     &:hover {
+      color: #fff;
+      background-color: #12e22d;
+      border-color: #12e22d;
+      text-decoration: none;
+  }
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #12e22d;
+    border-color: #12e22d;
+     &:hover {
+      color: #fff;
+      background-color: #12e22d;
+      border-color: #12e22d;
+      text-decoration: none;
+  }
+}
+
+
+/* dropdown-menu */
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.428571429;
+    color: #1bc711;
+    white-space: nowrap;
 }

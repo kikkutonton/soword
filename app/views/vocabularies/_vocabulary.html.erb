@@ -1,7 +1,21 @@
 <li id="vocabulary-<%= vocabulary.id %>">
-  <span class="word"><%= vocabulary.word %></span>
-  <span class="meaning"><%= vocabulary.meaning %></span>
-  <span class="similarity"><%= vocabulary.similarity %></span>
-  <span class="example"><%= vocabulary.example %></span>
-  <%= link_to "delete", vocabulary, method: :delete, data: { confirm: "You sure?" } %>
+  <div class="card border-secondary mb-3" style="max-width: 80rem;">
+    <div class="card-header">
+      <h4>
+        <span class="word"><%= vocabulary.word %></span>
+        &nbsp;&nbsp;<span class="meaning"><%= vocabulary.meaning %></span>
+      </h4>
+    </div>
+  </div>
+  <div class="card-body text-secondary">
+    <p class="card-text">
+      <h5>
+        <br>類似：
+        <span class="similarity"><%= vocabulary.similarity %></span>
+        <br>例文：
+        <span class="example"><%= vocabulary.example %></span>
+        <br><br><%= link_to "削除", vocabulary, method: :delete, data: { confirm: "単語を削除しますか？" } %>
+      </h5>
+    </p>
+  </div>
 </li>
