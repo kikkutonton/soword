@@ -6,36 +6,30 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(name: "Example User", email: "user@example.com", password: "foobarpass", password_confirmation: "foobarpass")
   end
 
-  #ユーザオブジェクトの有効性確認
   test "should be valid" do
     assert @user.valid?
   end
 
-  #name存在確認 
   test "name should present" do
     @user.name = "  "
     assert_not @user.valid?
   end
 
-  #email存在確認
   test "email should present" do
     @user.email = " "
     assert_not @user.valid?
   end
 
-  #name文字制限確認
   test "name should not be too long" do
     @user.name = "a"*51
     assert_not @user.valid?
   end
 
-  #email文字制限確認
   test "email should not be too long" do
     @user.email = "a"*244 + "@example.com"
     assert_not @user.valid?
   end
 
-  #email有効フォーマット確認
   test "email validation should accept valid addresses" do
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
                          first.last@foo.jp alice+bob@baz.cn]
@@ -45,7 +39,6 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  #email無効フォーマット確認
   test "email validation should reject invalid addresses" do
     invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.foo@bar_baz.com foo@bar+baz.com]
     invalid_addresses.each do |invalid_address|
@@ -54,7 +47,6 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
- #email一意性確認
  test "email addresses should be unique" do
    duplicate_user = @user.dup
    duplicate_user.email = @user.email.upcase
@@ -62,15 +54,21 @@ class UserTest < ActiveSupport::TestCase
    assert_not duplicate_user.valid?
  end
 
-  #password, password_confirmation存在確認
   test "password should be present (nonblank)" do
     @user.password = @user.password_confirmation = " " * 8
     assert_not @user.valid?
   end
 
-  #password, password_confirmation最小文字数確認
   test "password should have a minimum length" do
     @user.password = @user.password_confirmation = " " * 7
     assert_not @user.valid?
+  end
+
+  test "associated vocabularies should be destroyed" do
+    @user.save
+    @user.vocabularies.create!(word:"example", meaning:"example", similarity:"example", example:"example")
+    assert_difference 'Vocabulary.count', -1 do
+      @user.destroy
+    end
   end
 end

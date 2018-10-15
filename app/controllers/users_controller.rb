@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+
+    if params[:q] && params[:q].reject { |key, value| value.blank? }.present?
+      @q = @user.vocabularies.ransack(vocabularies_search_params)
+      @vocabularies = @q.result.paginate(page: params[:page])
+    else
+      @q = Vocabulary.none.ransack
+      @vocabularies = @user.vocabularies.paginate(page: params[:page])
+    end
+    @url = user_path(@user)
   end
 
   def new
@@ -20,5 +29,18 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
+  end
+
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
+
+  def vocabularies_search_params
+    params.require(:q).permit(:word_cont)
   end
 end

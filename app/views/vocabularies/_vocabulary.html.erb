@@ -1,0 +1,7 @@
+<li id="vocabulary-<%= vocabulary.id %>">
+  <span class="word"><%= vocabulary.word %></span>
+  <span class="meaning"><%= vocabulary.meaning %></span>
+  <span class="similarity"><%= vocabulary.similarity %></span>
+  <span class="example"><%= vocabulary.example %></span>
+  <%= link_to "delete", vocabulary, method: :delete, data: { confirm: "You sure?" } %>
+</li>

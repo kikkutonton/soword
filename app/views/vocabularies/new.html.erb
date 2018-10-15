@@ -1,0 +1,24 @@
+<% provide(:title, 'New word') %>
+<h1>New word</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@vocabulary, url: create_path) do |f| %>
+    <%= render 'vocabularies/error_messages' %>
+
+      <%= f.label :word %>
+      <%= f.text_field :word, class: 'form_control' %>
+
+      <%= f.label :meaning %>
+      <%= f.text_field :meaning, class: 'form_control' %>
+
+      <%= f.label :similarity %>
+      <%= f.text_field :similarity, class: 'form_control' %>
+
+      <%= f.label :example %>
+      <%= f.text_field :example, class: 'form_control' %>
+
+      <%= f.submit "Create new word", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
